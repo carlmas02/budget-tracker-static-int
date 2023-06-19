@@ -1,19 +1,32 @@
 import "./App.css";
 import Tile from "./components2/Tile";
 import InputBox from "./components2/InputBox";
+import Counter from "./components2/Counter";
+import { useState } from "react";
 
-const amount = [100, 200, 300];
+const num = [100, 200, 300];
 
 function App() {
-  const renderTile = (amt) => {
-    return <Tile number={amt} />
+  const [transactions, setTransactions] = useState([
+    { amount: 100, category: "expense" },
+  ]);
+  const [amount, setAmount] = useState(0);
+  const [category, setCategory] = useState("");
+
+  const renderTile = (transaction) => {
+    return <Tile transaction={transaction} />;
   };
 
   return (
     <div className="App">
-      <InputBox />
-
-      {amount.map(renderTile)}
+      <InputBox
+        amount={amount}
+        setAmount={setAmount}
+        category={category}
+        setCategory={setCategory}
+      />
+      {transactions.map(renderTile)}
+      {/* <Counter /> */}
     </div>
   );
 }

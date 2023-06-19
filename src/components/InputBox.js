@@ -1,6 +1,6 @@
 import React from "react";
 
-const InputBox = () => {
+const InputBox = (props) => {
   const handleClick = () => {
     const inputBox = document.getElementById("amount");
     alert(inputBox.value);
@@ -9,12 +9,34 @@ const InputBox = () => {
   return (
     <div className="input-box">
       <h1>Budget Tracker</h1>
-      <input placeholder="Enter an amount" id="amount" />
+
+      {props.amount}
+
+      <input
+        type="number"
+        placeholder="Enter an amount"
+        id="amount"
+        onChange={(event) => {
+          props.setAmount(event.target.value);
+        }}
+      />
       <br />
-      <input type="radio" name="category" />
+      <input
+        type="radio"
+        name="category"
+        onChange={() => {
+          props.setCategory("expense");
+        }}
+      />
       <label>Expense</label>
       <br />
-      <input type="radio" name="category" />
+      <input
+        type="radio"
+        name="category"
+        onChange={() => {
+          props.setCategory("earning");
+        }}
+      />
       <label>Earnings</label>
       <br />
 

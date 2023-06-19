@@ -4,21 +4,15 @@ import InputBox from "./components/InputBox";
 import Counter from "./components/Counter";
 import { useState } from "react";
 
-const num = [100, 200, 400, 300];
-
 function App() {
-  const [transactions, setTransactions] = useState([]); // [{...},{...}]
+  const [transactions, setTransactions] = useState([
+    { amount: 100, category: "earning" },
+  ]); // [{...},{...}]
   const [amount, setAmount] = useState(""); // eg. 300
   const [category, setCategory] = useState(""); // expense or saving
 
-  const returnTiles = (num) => {
-    return (
-      <Tile
-        number={num}
-        transactions={transactions}
-        setTransactions={setTransactions}
-      />
-    );
+  const returnTiles = (transaction) => {
+    return <Tile transaction={transaction} />;
   };
 
   return (
@@ -30,7 +24,7 @@ function App() {
         setCategory={setCategory}
       />
 
-      {num.map(returnTiles)}
+      {transactions.map(returnTiles)}
     </div>
   );
 }
