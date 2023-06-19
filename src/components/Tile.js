@@ -1,10 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Tile = (props) => {
-  return (
-    <div>Tile Component: Rs {props.number}/-</div>
-  )
-}
+  return <div className="tile">Tile Component: Rs {props.number}/-</div>;
+};
 
-export default Tile
-
+export default Tile;

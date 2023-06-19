@@ -1,27 +1,41 @@
-import './style.css';
-import Tile from './components/Tile';
-import InputBox from './components/InputBox';
+import "./style.css";
+import Tile from "./components/Tile";
+import InputBox from "./components/InputBox";
+import Counter from "./components/Counter";
+import { useState } from "react";
 
-
-const num = [100,200,400,300];
-
-const returnTiles = (num) =>{
-  return <Tile number = {num} />
-}
+const num = [100, 200, 400, 300];
 
 function App() {
+  const [transactions, setTransactions] = useState([]); // [{...},{...}]
+  const [amount, setAmount] = useState(""); // eg. 300
+  const [category, setCategory] = useState(""); // expense or saving
+
+  const returnTiles = (num) => {
+    return (
+      <Tile
+        number={num}
+        transactions={transactions}
+        setTransactions={setTransactions}
+      />
+    );
+  };
+
   return (
     <div className="App">
-      <InputBox />
-      
-      {num.map(returnTiles)}
+      <InputBox
+        amount={amount}
+        setAmount={setAmount}
+        category={category}
+        setCategory={setCategory}
+      />
 
+      {num.map(returnTiles)}
     </div>
   );
 }
 
 export default App;
-
 
 // const UserCard = (props) => {
 //   return (

@@ -2,16 +2,16 @@ const InputBox = () => {
   const performTask = () => {
     const inputData = document.getElementById("input-box");
 
-    if(inputData.value===""){
-        alert("Please enter an amount !");
-        return;
+    if (inputData.value === "") {
+      alert("Please enter an amount !");
+      return;
     }
 
     alert(inputData.value);
   };
 
   return (
-    <div>
+    <div className="input-box">
       <h1>Budget Tracker</h1>
       <input placeholder="Enter an amount" id="input-box" />
       <br />

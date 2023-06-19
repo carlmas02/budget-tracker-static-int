@@ -1,17 +1,15 @@
 import React from "react";
 
 const InputBox = () => {
-
-
   const handleClick = () => {
-    const inputBox = document.getElementById('amount')
+    const inputBox = document.getElementById("amount");
     alert(inputBox.value);
   };
 
   return (
-    <div>
+    <div className="input-box">
       <h1>Budget Tracker</h1>
-      <input placeholder="Enter an amount"  id = 'amount'  />
+      <input placeholder="Enter an amount" id="amount" />
       <br />
       <input type="radio" name="category" />
       <label>Expense</label>
