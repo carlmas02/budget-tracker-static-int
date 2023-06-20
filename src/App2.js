@@ -13,8 +13,16 @@ function App() {
   const [amount, setAmount] = useState(0);
   const [category, setCategory] = useState("");
 
-  const renderTile = (transaction) => {
-    return <Tile transaction={transaction} />;
+  const renderTile = (transaction, index) => {
+    return (
+      <Tile
+        transaction={transaction}
+        key={index}
+        index={index}
+        transactions={transactions}
+        setTransactions={setTransactions}
+      />
+    );
   };
 
   return (
@@ -24,6 +32,8 @@ function App() {
         setAmount={setAmount}
         category={category}
         setCategory={setCategory}
+        transactions={transactions}
+        setTransactions={setTransactions}
       />
       {transactions.map(renderTile)}
       {/* <Counter /> */}

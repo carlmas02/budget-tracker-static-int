@@ -1,13 +1,9 @@
 const InputBox = (props) => {
   const performTask = () => {
-    const inputData = document.getElementById("input-box");
+    const newObj = { amount: props.amount, category: props.category };
 
-    if (inputData.value === "") {
-      alert("Please enter an amount !");
-      return;
-    }
-
-    alert(inputData.value);
+    const newTransactions = [newObj, ...props.transactions];
+    props.setTransactions(newTransactions);
   };
 
   return (
@@ -15,16 +11,32 @@ const InputBox = (props) => {
       <h1>Budget Tracker</h1>
       {props.amount}
       <input
+        type="number"
         placeholder="Enter an amount"
         id="input-box"
-      onChange={(event) => {
+        onChange={(event) => {
           props.setAmount(event.target.value);
         }}
       />
       <br />
-      <input type="radio" name="category"  /> <label>Expense</label>
+      {props.category}
+      <input
+        type="radio"
+        name="category"
+        onChange={() => {
+          props.setCategory("expense");
+        }}
+      />{" "}
+      <label>Expense</label>
       <br />
-      <input type="radio" name="category" /> <label>Saving</label>
+      <input
+        type="radio"
+        name="category"
+        onChange={() => {
+          props.setCategory("saving");
+        }}
+      />{" "}
+      <label>Saving</label>
       <br />
       <button onClick={performTask}>Submit</button>
     </div>

@@ -6,13 +6,45 @@ import { useState } from "react";
 
 function App() {
   const [transactions, setTransactions] = useState([
-    { amount: 100, category: "earning" },
+    { amount: 200, category: "earning" },
   ]); // [{...},{...}]
   const [amount, setAmount] = useState(""); // eg. 300
   const [category, setCategory] = useState(""); // expense or saving
 
-  const returnTiles = (transaction) => {
-    return <Tile transaction={transaction} />;
+  const updateTransaction = (id) => {
+    console.log(id);
+
+    const updatedAmount = prompt(
+      "Please enter the amount you want to update ?"
+    );
+
+    console.log(updatedAmount);
+  };
+
+  const deleteTransaction = (id) => {
+    console.log(id);
+    console.log(transactions);
+    const newTransactions = transactions.filter((item, id) => {
+      if (props.index === id) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+
+    setTransactions(newTransactions);
+  };
+
+  const returnTiles = (transaction, index) => {
+    return (
+      <Tile
+        key={index}
+        deleteTransaction={deleteTransaction}
+        index={index}
+        transaction={transaction}
+        updateTransaction={updateTransaction}
+      />
+    );
   };
 
   return (
@@ -22,6 +54,8 @@ function App() {
         setAmount={setAmount}
         category={category}
         setCategory={setCategory}
+        transactions={transactions}
+        setTransactions={setTransactions}
       />
 
       {transactions.map(returnTiles)}

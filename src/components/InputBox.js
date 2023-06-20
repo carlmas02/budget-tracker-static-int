@@ -2,15 +2,17 @@ import React from "react";
 
 const InputBox = (props) => {
   const handleClick = () => {
-    const inputBox = document.getElementById("amount");
-    alert(inputBox.value);
+    // console.log(props.amount, props.category);
+    const tempObj = { amount: props.amount, category: props.category };
+    // console.log(props.transaction);
+    props.setTransactions([...props.transactions, tempObj]);
   };
 
   return (
     <div className="input-box">
       <h1>Budget Tracker</h1>
 
-      {props.amount}
+      {/* {props.amount} */}
 
       <input
         type="number"
