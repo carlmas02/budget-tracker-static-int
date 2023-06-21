@@ -1,43 +1,32 @@
 import "./App.css";
-import Tile from "./components2/Tile";
-import InputBox from "./components2/InputBox";
-import Counter from "./components2/Counter";
-import { useState } from "react";
-
-const num = [100, 200, 300];
+import Home from "./components2/Home";
+import Chart from "./components2/Chart";
+import Assistant from "./components2/Assistant";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 function App() {
-  const [transactions, setTransactions] = useState([
-    { amount: 100, category: "expense" },
-  ]);
-  const [amount, setAmount] = useState(0);
-  const [category, setCategory] = useState("");
-
-  const renderTile = (transaction, index) => {
-    return (
-      <Tile
-        transaction={transaction}
-        key={index}
-        index={index}
-        transactions={transactions}
-        setTransactions={setTransactions}
-      />
-    );
-  };
-
   return (
-    <div className="App">
-      <InputBox
-        amount={amount}
-        setAmount={setAmount}
-        category={category}
-        setCategory={setCategory}
-        transactions={transactions}
-        setTransactions={setTransactions}
-      />
-      {transactions.map(renderTile)}
-      {/* <Counter /> */}
-    </div>
+    <BrowserRouter>
+      <nav>
+        <ul>
+          <Link to="/">
+            <li>Home</li>
+          </Link>
+          <Link to="/chart">
+            <li>Chart</li>
+          </Link>
+          <Link to="/assistant">
+            <li>Assistant</li>
+          </Link>
+        </ul>
+      </nav>
+
+      <Routes>
+        <Route path="/" index element={<Home />}></Route>
+        <Route path="/chart" index element={<Chart />}></Route>
+        <Route path="/assistant" index element={<Assistant />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

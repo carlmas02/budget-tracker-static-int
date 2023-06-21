@@ -2,10 +2,9 @@ import React from "react";
 
 const InputBox = (props) => {
   const handleClick = () => {
-    // console.log(props.amount, props.category);
     const tempObj = { amount: props.amount, category: props.category };
-    // console.log(props.transaction);
-    props.setTransactions([...props.transactions, tempObj]);
+    const newTransactions = [...props.transactions, tempObj];
+    props.setTransactions(newTransactions);
   };
 
   return (

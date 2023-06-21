@@ -3,6 +3,7 @@ const InputBox = (props) => {
     const newObj = { amount: props.amount, category: props.category };
 
     const newTransactions = [newObj, ...props.transactions];
+
     props.setTransactions(newTransactions);
   };
 

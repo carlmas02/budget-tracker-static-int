@@ -2,64 +2,35 @@ import "./style.css";
 import Tile from "./components/Tile";
 import InputBox from "./components/InputBox";
 import Counter from "./components/Counter";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Home from "./components/Home";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Chart from "./components/Chart";
+import Assistant from "./components/Assistant";
 
 function App() {
-  const [transactions, setTransactions] = useState([
-    { amount: 200, category: "earning" },
-  ]); // [{...},{...}]
-  const [amount, setAmount] = useState(""); // eg. 300
-  const [category, setCategory] = useState(""); // expense or saving
-
-  const updateTransaction = (id) => {
-    console.log(id);
-
-    const updatedAmount = prompt(
-      "Please enter the amount you want to update ?"
-    );
-
-    console.log(updatedAmount);
-  };
-
-  const deleteTransaction = (id) => {
-    console.log(id);
-    console.log(transactions);
-    const newTransactions = transactions.filter((item, id) => {
-      if (props.index === id) {
-        return false;
-      } else {
-        return true;
-      }
-    });
-
-    setTransactions(newTransactions);
-  };
-
-  const returnTiles = (transaction, index) => {
-    return (
-      <Tile
-        key={index}
-        deleteTransaction={deleteTransaction}
-        index={index}
-        transaction={transaction}
-        updateTransaction={updateTransaction}
-      />
-    );
-  };
-
   return (
-    <div className="App">
-      <InputBox
-        amount={amount}
-        setAmount={setAmount}
-        category={category}
-        setCategory={setCategory}
-        transactions={transactions}
-        setTransactions={setTransactions}
-      />
+    <BrowserRouter>
+      <nav>
+        <ul>
+          <Link to={"/"}>
+            <li>Home</li>
+          </Link>
+          <Link to={"/chart"}>
+            <li>Chart</li>
+          </Link>
+          <Link to={"/assistant"}>
+            <li>Assistant</li>
+          </Link>
+        </ul>
+      </nav>
 
-      {transactions.map(returnTiles)}
-    </div>
+      <Routes>
+        <Route path="/" index element={<Home />}></Route>
+        <Route path="/chart" element={<Chart />}></Route>
+        <Route path="/assistant" element={<Assistant />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
